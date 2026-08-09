@@ -1,0 +1,20 @@
+# Ambientes
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Dados brutos grandes (mantidos fora do git; hospedados externamente e linkados no README)
+data/raw/
+images/raw/
+*.csv
+*.tsv
+*.xls
+*.xlsx
+
+# SO / editor
+.DS_Store
+.vscode/
+
+# Planejamento interno da sessão (não faz parte do entregável avaliado)
+CONTEXTO.md
