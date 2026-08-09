@@ -90,12 +90,19 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ### Parte 2 — Dados Textuais (NLP)
 
-Arquivos em [`docs/textos/`](docs/textos/):
+Arquivos em [`docs/textos/`](docs/textos/), ambos artigos científicos reais publicados nos *Arquivos Brasileiros de Cardiologia*, indexados no PubMed Central (PMC) sob licença **Creative Commons Attribution (CC BY)**, que autoriza reprodução com atribuição da fonte:
 
-- _TODO: texto1.txt — fonte_
-- _TODO: texto2.txt — fonte_
+- [`manejo-dcv-mulheres.txt`](docs/textos/manejo-dcv-mulheres.txt) — Oliveira GMM, Wenger NK. *Manejo das Doenças Cardiovasculares em Mulheres: É Trabalho de Todos*. Arq Bras Cardiol. 2023;120(5):e20230250. [PMC10263394](https://pmc.ncbi.nlm.nih.gov/articles/PMC10263394/). Aborda fatores de risco, sintomas e determinantes específicos de sexo nas doenças cardiovasculares.
+- [`doenca-isquemica-renda.txt`](docs/textos/doenca-isquemica-renda.txt) — Bertoletti OA. *Doença Cardíaca Isquêmica e Nível de Renda – Uma Reflexão Acerca de Determinantes Sociais e Estruturais*. Arq Bras Cardiol. 2024;120(11):e20240014. [PMC11098580](https://pmc.ncbi.nlm.nih.gov/articles/PMC11098580/). Relaciona nível socioeconômico, ambiente urbano e prevalência de doença isquêmica do coração.
 
-**Como podem ser explorados por NLP:** _TODO_
+**Como podem ser explorados por NLP:**
+
+- **Extração de sintomas e fatores de risco:** técnicas de Named Entity Recognition (NER) podem identificar automaticamente termos clínicos recorrentes (ex.: "hipertensão", "pré-eclâmpsia", "diabetes", "tabagismo") para alimentar uma base estruturada de fatores de risco cardiovascular a partir de texto livre.
+- **Classificação de tópicos:** os dois textos cobrem ângulos diferentes (sexo/gênero vs. determinantes socioeconômicos) — um classificador supervisionado treinado sobre esses e outros artigos poderia rotular automaticamente novos textos médicos por tema, útil para triagem de literatura em larga escala.
+- **Análise de sentimentos/tom:** embora sejam textos técnicos (tom predominantemente neutro-descritivo), a mesma técnica aplicada a textos de pacientes (ex.: relatos em prontuário, redes sociais) permitiria detectar urgência ou gravidade percebida de sintomas.
+- **Sumarização automática:** dado o volume crescente de literatura médica, resumir artigos como estes automaticamente ajudaria profissionais de saúde a acompanhar evidências mais recentes sem ler o texto completo.
+
+**Por que isso é relevante para IA em saúde:** a maior parte do conhecimento médico ainda está em texto não estruturado (artigos, prontuários, prescrições). Extrair informação estruturada desse texto é o que permite que os módulos de ML das próximas fases do CardioIA cruzem sintomas relatados em linguagem natural com os dados numéricos e de imagem já coletados, em vez de depender só de formulários estruturados.
 
 ### Parte 3 — Dados Visuais (Visão Computacional)
 
