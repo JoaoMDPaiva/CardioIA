@@ -65,10 +65,28 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 ### Parte 1 — Dados Numéricos (IoT)
 
-- **Fonte:** _TODO: nome do dataset no Kaggle + link_
-- **Real ou simulado:** _TODO_
-- **Link para os dados completos:** _TODO (Google Drive / OneDrive, acesso público)_
-- **Variáveis clínicas mais relevantes:** _TODO — justificar clinicamente cada uma_
+- **Fonte:** [Heart Failure Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction) (Kaggle, curado por fedesoriano) — combinação de 5 bases clínicas reais: Cleveland Clinic Foundation, Hungarian Institute of Cardiology (Budapeste), University Hospital de Zurique, University Hospital de Basel e V.A. Medical Center (Long Beach), originalmente doadas ao [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/).
+- **Real ou simulado:** Real. Todas as variáveis foram aferidas em exame clínico (não autodeclaradas pelo paciente), com os médicos responsáveis por cada instituição de origem identificados nominalmente.
+- **Licença:** Open Database License (ODbL) — autoriza explicitamente copiar e redistribuir a base com atribuição, o que permite hospedar a cópia abaixo.
+- **Link para os dados completos:** [heart.csv — Google Drive, acesso público](https://drive.google.com/file/d/1Q8bq2rCqqPY7Ipmao7megFtDihwAGGy6/view?usp=sharing)
+- **Tamanho:** 918 registros × 12 colunas (11 variáveis preditoras + variável-alvo), resultado da deduplicação de 1.190 observações originais (272 duplicadas removidas na curadoria).
+
+**Variáveis clínicas mais relevantes:**
+
+| Variável | Justificativa clínica |
+|---|---|
+| `Age` | Principal fator de risco não modificável para doença cardiovascular; risco cresce de forma acentuada após os 45-55 anos. |
+| `Sex` | O risco cardiovascular e a idade de início diferem significativamente entre homens e mulheres. |
+| `ChestPainType` | Tipo de dor no peito (angina típica/atípica, não anginosa, assintomático) é sintoma-chave na triagem inicial de doença coronariana. |
+| `RestingBP` | Hipertensão é um dos principais fatores de risco modificáveis para doença cardíaca. |
+| `Cholesterol` | Colesterol sérico elevado está diretamente associado à aterosclerose e obstrução coronariana. |
+| `FastingBS` | Hiperglicemia/diabetes é comorbidade de alto risco para eventos cardiovasculares. |
+| `RestingECG` | Identifica anormalidades elétricas do coração (ex.: hipertrofia ventricular) associadas a doença estrutural. |
+| `MaxHR` | Capacidade funcional cardiovascular reduzida está associada a pior prognóstico. |
+| `ExerciseAngina` | Angina induzida por esforço é sintoma de isquemia miocárdica e forte preditor de doença coronariana. |
+| `Oldpeak` | Depressão do segmento ST é achado eletrocardiográfico clássico de isquemia sob esforço. |
+| `ST_Slope` | Complementa o `Oldpeak` na caracterização do padrão isquêmico no ECG de esforço. |
+| `HeartDisease` | Variável-alvo (0/1) — presença ou ausência de doença cardíaca, usada para treinar/validar modelos preditivos nas próximas fases do curso. |
 
 ### Parte 2 — Dados Textuais (NLP)
 
@@ -88,8 +106,13 @@ Arquivos em [`docs/textos/`](docs/textos/):
 
 ### 🔐 Governança de Dados e Ética
 
-_TODO: origem e licenciamento dos dados, LGPD, riscos de viés identificados e
-contramedidas consideradas na seleção das fontes._
+- **Origem e licenciamento:** dataset real, combinação de 5 bases clínicas de instituições hospitalares nomeadas (não anônimas), doadas ao UCI Machine Learning Repository e curadas no Kaggle sob licença ODbL — o que garante o direito de hospedar publicamente uma cópia neste projeto. Confiabilidade da coleta e direito de redistribuição foram avaliados como critérios **independentes** na escolha da fonte: um dataset bem coletado não é necessariamente redistribuível, e vice-versa.
+- **Por que este dataset e não uma base maior:** havia uma alternativa com 70.000 registros, mas com licença "Unknown" no Kaggle e variáveis parcialmente autodeclaradas pelo paciente (fumo, álcool, atividade física). Priorizamos o Heart Failure Prediction Dataset por suas variáveis serem majoritariamente aferidas clinicamente e por ter licença explícita que permite a redistribuição exigida por esta atividade.
+- **Riscos de viés identificados:**
+  - Os dados vêm de hospitais dos EUA e Europa, coletados entre as décadas de 1980-90 — não representam a população brasileira nem os perfis epidemiológicos atuais; qualquer modelo treinado sobre esta base exigiria validação/recalibração antes de qualquer uso clínico real.
+  - Possível desbalanceamento entre sexos e faixas etárias nas amostras originais, a verificar antes de qualquer modelagem nas fases seguintes.
+  - Critérios diagnósticos e tecnologias de exame de 1980-90 diferem dos padrões atuais.
+- **LGPD:** os dados já são anonimizados/agregados na fonte (sem identificação direta de pacientes), o que reduz o risco de reidentificação. Ainda assim, são tratados como dado sensível de saúde, sem tentativa de cruzamento com outras bases.
 
 ## 🔧 Como executar o código
 
